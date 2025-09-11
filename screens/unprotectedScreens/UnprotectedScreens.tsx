@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
 const UnprotectedScreens = () => {
-  <View></View>;
+  return <View></View>;
 };
 export default UnprotectedScreens;

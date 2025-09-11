@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
 const ProductScreen = () => {
-  <View></View>;
+  return <View></View>;
 };
 export default ProductScreen;
