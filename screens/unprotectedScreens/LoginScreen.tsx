@@ -18,6 +18,7 @@ const LoginScreen = () => {
       <TextInput placeholder="email" style={styles.inputStyle} />
       <TextInput placeholder="password" style={styles.inputStyle} />
       <Button title="Submit" />
+      <Text>you don't have an account, click here to sign up</Text>
     </View>
   );
 };
