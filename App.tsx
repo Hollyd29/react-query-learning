@@ -13,8 +13,8 @@ export default function App() {
   }, []);
   return (
     <NavigationContainer>
-      <View>
-        <StatusBar style="auto" />
+      <View style={{ flex: 1 }}>
+        {/* <StatusBar style="auto" /> */}
         {istoken ? <ProtectedScreen /> : <UnprotectedScreens />}
       </View>
     </NavigationContainer>
