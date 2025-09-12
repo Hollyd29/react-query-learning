@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 const UnprotectedScreens = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
