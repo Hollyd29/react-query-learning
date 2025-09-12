@@ -1,12 +1,23 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const LoginScreen = () => {
+  interface inputProp {
+    email: string;
+    password: string;
+  }
+
+  const input: inputProp = {
+    email: "",
+    password: "",
+  };
+
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
       <Text>Login Screen</Text>
 
       <TextInput placeholder="email" style={styles.inputStyle} />
       <TextInput placeholder="password" style={styles.inputStyle} />
+      <Button title="Submit" />
     </View>
   );
 };
