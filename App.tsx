@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <View style={{ flex: 1 }}>
-        {/* <StatusBar style="auto" /> */}
+        <StatusBar style="auto" />
         {istoken ? <ProtectedScreen /> : <UnprotectedScreens />}
       </View>
     </NavigationContainer>
