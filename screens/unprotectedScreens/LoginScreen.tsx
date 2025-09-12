@@ -2,10 +2,11 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const LoginScreen = () => {
   return (
-    <View>
+    <View style={{ padding: 20, marginTop: 100 }}>
       <Text>Login Screen</Text>
 
       <TextInput placeholder="email" style={styles.inputStyle} />
+      <TextInput placeholder="password" style={styles.inputStyle} />
     </View>
   );
 };
@@ -18,5 +19,6 @@ const styles = StyleSheet.create({
     // height: 40,
     padding: 10,
     marginTop: 30,
+    borderRadius: 5,
   },
 });
