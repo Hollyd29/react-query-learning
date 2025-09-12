@@ -1,4 +1,8 @@
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { ScreensProp } from "../../utils/types/screen.type";
 
 const LoginScreen = () => {
   interface inputProp {
@@ -6,10 +10,12 @@ const LoginScreen = () => {
     password: string;
   }
 
-  const input: inputProp = {
+  const inputData: inputProp = {
     email: "",
     password: "",
   };
+  const [input, setInput] = useState<inputProp>(inputData);
+  const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
@@ -18,7 +24,9 @@ const LoginScreen = () => {
       <TextInput placeholder="email" style={styles.inputStyle} />
       <TextInput placeholder="password" style={styles.inputStyle} />
       <Button title="Submit" />
-      <Text>you don't have an account, click here to sign up</Text>
+      <Text onPress={() => navigation.navigate("Password")}>
+        you don't have an account, click here to sign up
+      </Text>
     </View>
   );
 };

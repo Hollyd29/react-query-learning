@@ -1,4 +1,4 @@
-export interface ScreensProp {
+export type ScreensProp = {
   Login: undefined;
   Password: undefined;
-}
+};
