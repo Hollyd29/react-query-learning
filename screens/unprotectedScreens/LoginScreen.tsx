@@ -24,7 +24,7 @@ const LoginScreen = () => {
       <TextInput placeholder="email" style={styles.inputStyle} />
       <TextInput placeholder="password" style={styles.inputStyle} />
       <Button title="Submit" />
-      <Text onPress={() => navigation.navigate("Password")}>
+      <Text onPress={() => navigation.navigate("Register")}>
         you don't have an account, click here to sign up
       </Text>
     </View>
