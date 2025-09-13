@@ -1,7 +1,7 @@
 //@ts-ignore
 import { EXPO_BASE_URL } from "@env";
 import axios from "axios";
-import { getAuthToken } from "../storage/token";
+import { getAuthToken } from "../utils/storage/token";
 
 const api = axios.create({
   baseURL: EXPO_BASE_URL,

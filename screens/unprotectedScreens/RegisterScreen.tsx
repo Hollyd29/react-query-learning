@@ -3,14 +3,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { ScreensProp } from "../../utils/types/screen.type";
+import { inputProp } from "../../utils/types/input.type";
 
 const RegisterScreen = () => {
-  interface inputProp {
-    username: string;
-    email: string;
-    password: string;
-  }
-
   const inputData: inputProp = {
     username: "",
     email: "",
