@@ -17,17 +17,28 @@ const RegisterScreen = () => {
     password: "",
   };
   const [input, setInput] = useState<inputProp>(inputData);
+
+  const { username, email, password } = input;
+
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
       <Text>Register Screen</Text>
 
-      <TextInput placeholder="username" style={styles.inputStyle} />
-      <TextInput placeholder="email" style={styles.inputStyle} />
-      <TextInput placeholder="password" style={styles.inputStyle} />
+      <TextInput
+        placeholder="username"
+        style={styles.inputStyle}
+        value={username}
+      />
+      <TextInput placeholder="email" style={styles.inputStyle} value={email} />
+      <TextInput
+        placeholder="password"
+        style={styles.inputStyle}
+        value={password}
+      />
       <Button title="Submit" />
-      <Text onPress={() => navigation.navigate("Register")}>
+      <Text onPress={() => navigation.navigate("Login")}>
         you don't have an account, click here to sign up
       </Text>
     </View>
