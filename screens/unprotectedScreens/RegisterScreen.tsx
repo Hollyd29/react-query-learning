@@ -16,6 +16,8 @@ const RegisterScreen = () => {
 
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
+  const register = registerAction();
+
   const { username, email, password } = input;
   const handleChange = (value: string, name: string) => {
     setInput((prev) => ({
@@ -24,9 +26,9 @@ const RegisterScreen = () => {
     }));
   };
 
-  const handleRegister = async () => {
-    await registerAction(input);
-  };
+  // const handleRegister = async () => {
+  //   await registerAction(input);
+  // };
 
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
@@ -50,7 +52,10 @@ const RegisterScreen = () => {
         value={password}
         onChangeText={(value: string) => handleChange(value, "password")}
       />
-      <Button title="Submit" onPress={handleRegister} />
+      <Button
+        title={register.isPending ? "Loading..." : "Submit"}
+        onPress={() => register.mutate(input)}
+      />
       <Text onPress={() => navigation.navigate("Login")}>
         you don't have an account, click here to sign up
       </Text>

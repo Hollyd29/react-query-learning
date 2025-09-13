@@ -3,9 +3,9 @@ import { registerService } from "../service/auth-serviec";
 import { inputProp } from "../../utils/types/input.type";
 import Toast from "react-native-toast-message";
 
-export const registerAction = (input: inputProp) => {
-  return useMutation({
-    mutationFn: async () => {
+export const registerAction = () => {
+  return useMutation<any, Error, inputProp>({
+    mutationFn: async (input: inputProp) => {
       const { data } = await registerService(input);
       return data;
     },
