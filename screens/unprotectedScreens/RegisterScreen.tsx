@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { ScreensProp } from "../../utils/types/screen.type";
 import { inputProp } from "../../utils/types/input.type";
+import { registerAction } from "../../apis/action/auth-action";
 
 const RegisterScreen = () => {
   const inputData: inputProp = {
@@ -23,7 +24,9 @@ const RegisterScreen = () => {
     }));
   };
 
-  const handleRegister = () => {};
+  const handleRegister = async () => {
+    await registerAction(input);
+  };
 
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
