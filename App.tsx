@@ -4,6 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 import ProtectedScreen from "./screens/protectedScreens/protectedScrens";
 import UnprotectedScreens from "./screens/unprotectedScreens/UnprotectedScreens";
 import { NavigationContainer } from "@react-navigation/native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const [istoken, setIsToken] = useState<boolean>(false);
@@ -12,12 +15,14 @@ export default function App() {
     setIsToken(false);
   }, []);
   return (
-    <NavigationContainer>
-      <View style={{ flex: 1 }}>
-        <StatusBar style="auto" />
-        {istoken ? <ProtectedScreen /> : <UnprotectedScreens />}
-      </View>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <View style={{ flex: 1 }}>
+          <StatusBar style="auto" />
+          {istoken ? <ProtectedScreen /> : <UnprotectedScreens />}
+        </View>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
 

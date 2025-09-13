@@ -23,6 +23,8 @@ const RegisterScreen = () => {
     }));
   };
 
+  const handleRegister = () => {};
+
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
       <Text>Register Screen</Text>
@@ -45,7 +47,7 @@ const RegisterScreen = () => {
         value={password}
         onChangeText={(value: string) => handleChange(value, "password")}
       />
-      <Button title="Submit" />
+      <Button title="Submit" onPress={handleRegister} />
       <Text onPress={() => navigation.navigate("Login")}>
         you don't have an account, click here to sign up
       </Text>
