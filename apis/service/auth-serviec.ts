@@ -13,4 +13,6 @@ export const registerService = async ({
   });
 };
 
-export const loginService = async () => {};
+export const loginService = async ({ email, password }: inputProp) => {
+  return await api.post("/auth/login", { email, password });
+};
