@@ -18,10 +18,9 @@ const RegisterScreen = () => {
   };
   const [input, setInput] = useState<inputProp>(inputData);
 
-  const { username, email, password } = input;
-
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
+  const { username, email, password } = input;
   const handleChange = (value: string, name: string) => {
     setInput((prev) => ({
       ...prev,
