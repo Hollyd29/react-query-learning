@@ -6,8 +6,10 @@ import Toast from "react-native-toast-message";
 export const registerAction = () => {
   return useMutation<any, Error, inputProp>({
     mutationFn: async (input: inputProp) => {
-      const { data } = await registerService(input);
-      return data;
+      const res = await registerService(input);
+      console.log(res.data);
+
+      return res.data;
     },
     onSuccess: () => {
       Toast.show({

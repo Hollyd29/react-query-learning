@@ -13,6 +13,7 @@ const RegisterScreen = () => {
     password: "",
   };
   const [input, setInput] = useState<inputProp>(inputData);
+  // console.log(input);
 
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
@@ -54,7 +55,9 @@ const RegisterScreen = () => {
       />
       <Button
         title={register.isPending ? "Loading..." : "Submit"}
-        onPress={() => register.mutate(input)}
+        onPress={() => {
+          register.mutate(input), console.log("i'm clicked");
+        }}
       />
       <Text onPress={() => navigation.navigate("Login")}>
         you don't have an account, click here to sign up
