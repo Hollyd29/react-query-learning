@@ -17,12 +17,30 @@ const LoginScreen = () => {
   const [input, setInput] = useState<inputProp>(inputData);
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
+  const { email, password } = input;
+  const handleChange = (value: string, name: string) => {
+    setInput((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
       <Text>Login Screen</Text>
 
-      <TextInput placeholder="email" style={styles.inputStyle} />
-      <TextInput placeholder="password" style={styles.inputStyle} />
+      <TextInput
+        placeholder="email"
+        style={styles.inputStyle}
+        value={email}
+        onChangeText={(value: string) => handleChange(value, "email")}
+      />
+      <TextInput
+        placeholder="password"
+        style={styles.inputStyle}
+        value={password}
+        onChangeText={(value: string) => handleChange(value, "password")}
+      />
       <Button title="Submit" />
       <Text onPress={() => navigation.navigate("Register")}>
         you don't have an account, click here to sign up
