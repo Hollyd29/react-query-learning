@@ -45,7 +45,7 @@ const LoginScreen = () => {
         onChangeText={(value: string) => handleChange(value, "password")}
       />
       <Button
-        title={login.isPending ? "Loading" : "Submit"}
+        title={login.isPending ? "Loading..." : "Submit"}
         onPress={() => login.mutate(input)}
       />
       <Text onPress={() => navigation.navigate("Register")}>

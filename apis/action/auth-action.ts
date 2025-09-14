@@ -5,13 +5,14 @@ import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ScreensProp } from "../../utils/types/screen.type";
+import { SetAuthToken } from "../../utils/storage/token";
 
 export const useRegisterAction = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
   return useMutation<any, Error, inputProp>({
     mutationFn: async (input: inputProp) => {
       const res = await registerService(input);
-      console.log(res.data);
+      //   console.log(res.data);
 
       return res.data;
     },
@@ -28,7 +29,8 @@ export const useRegisterAction = () => {
 
       //   Toast.show({
       //     type: "error",
-      //     text1: error.response?.data.message || "Something went wrong",
+      //     text1: error.response.data.message || "Something went wrong",
+      //     visibilityTime: 3000,
       //   });
     },
   });
@@ -42,15 +44,22 @@ export const useLoginAction = () => {
 
       return res.data;
     },
-    onSuccess: () => {
+    onSuccess: (res) => {
       Toast.show({
         type: "success",
         text1: " Login Successful",
         visibilityTime: 3000,
       });
+      SetAuthToken(res.data.token);
     },
     onError: (error) => {
       console.log(error);
+
+      //   Toast.show({
+      //     type: "error",
+      //     text1: error.response.data.message || "Something went wrong",
+      //     visibilityTime: 3000,
+      //   });
     },
   });
 };
