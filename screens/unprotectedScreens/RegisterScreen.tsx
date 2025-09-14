@@ -27,10 +27,10 @@ const RegisterScreen = () => {
     }));
   };
 
-  const handleRegister = async () => {
-    register.mutate(input);
-    navigation.navigate("Login");
-  };
+  // const handleRegister = async () => {
+  //   register.mutate(input);
+  //   // navigation.navigate("Login");
+  // };
 
   return (
     <View style={{ padding: 20, marginTop: 100 }}>
@@ -56,7 +56,7 @@ const RegisterScreen = () => {
       />
       <Button
         title={register.isPending ? "Loading..." : "Submit"}
-        onPress={handleRegister}
+        onPress={() => register.mutate(input)}
       />
       <Text onPress={() => navigation.navigate("Login")}>
         you don't have an account, click here to sign up
