@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ScreensProp } from "../../utils/types/screen.type";
 
-export const registerAction = () => {
+export const useRegisterAction = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
   return useMutation<any, Error, inputProp>({
     mutationFn: async (input: inputProp) => {
@@ -34,12 +34,23 @@ export const registerAction = () => {
   });
 };
 
-export const LoginAction = () => {
-  return useMutation({
+export const useLoginAction = () => {
+  return useMutation<any, Error, inputProp>({
     mutationFn: async (input: inputProp) => {
       const res = await loginService(input);
+      console.log(res.data);
+
       return res.data;
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      Toast.show({
+        type: "success",
+        text1: " Login Successful",
+        visibilityTime: 3000,
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 };

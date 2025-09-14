@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { ScreensProp } from "../../utils/types/screen.type";
+import { useLoginAction } from "../../apis/action/auth-action";
 
 const LoginScreen = () => {
   interface inputProp {
@@ -16,6 +17,8 @@ const LoginScreen = () => {
   };
   const [input, setInput] = useState<inputProp>(inputData);
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
+
+  const login = useLoginAction();
 
   const { email, password } = input;
   const handleChange = (value: string, name: string) => {
@@ -41,7 +44,10 @@ const LoginScreen = () => {
         value={password}
         onChangeText={(value: string) => handleChange(value, "password")}
       />
-      <Button title="Submit" />
+      <Button
+        title={login.isPending ? "Loading" : "Submit"}
+        onPress={() => login.mutate(input)}
+      />
       <Text onPress={() => navigation.navigate("Register")}>
         you don't have an account, click here to sign up
       </Text>

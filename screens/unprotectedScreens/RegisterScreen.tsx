@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { ScreensProp } from "../../utils/types/screen.type";
 import { inputProp } from "../../utils/types/input.type";
-import { registerAction } from "../../apis/action/auth-action";
+import { useRegisterAction } from "../../apis/action/auth-action";
 
 const RegisterScreen = () => {
   const inputData: inputProp = {
@@ -17,7 +17,7 @@ const RegisterScreen = () => {
 
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
 
-  const register = registerAction();
+  const register = useRegisterAction();
 
   const { username, email, password } = input;
   const handleChange = (value: string, name: string) => {
