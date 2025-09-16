@@ -6,21 +6,27 @@ import UnprotectedScreens from "./screens/unprotectedScreens/UnprotectedScreens"
 import { NavigationContainer } from "@react-navigation/native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Toast from "react-native-toast-message";
+import { useGlobalUserContext } from "./utils/context";
 
 const queryClient = new QueryClient();
 
 export default function App() {
-  const [istoken, setIsToken] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { authentication } = useGlobalUserContext();
 
   useEffect(() => {
-    setIsToken(false);
+    setIsLoading(false);
   }, []);
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <View style={{ flex: 1 }}>
           <StatusBar style="auto" />
-          {istoken ? <ProtectedScreen /> : <UnprotectedScreens />}
+          {authentication ? <ProtectedScreen /> : <UnprotectedScreens />}
           <Toast />
         </View>
       </NavigationContainer>
