@@ -42,8 +42,7 @@ export const useLoginAction = () => {
   return useMutation<any, Error, inputProp>({
     mutationFn: async (input: inputProp) => {
       const res = await loginService(input);
-      console.log(res.data);
-
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: async (res) => {
@@ -52,8 +51,9 @@ export const useLoginAction = () => {
         text1: " Login Successful",
         visibilityTime: 3000,
       });
-      SetAuthToken(res.data.token);
+      SetAuthToken(res.token);
       const token = await getAuthToken();
+
       setAuthentication(token);
     },
     onError: (error) => {
