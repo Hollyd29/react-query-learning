@@ -5,7 +5,8 @@ import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ScreensProp } from "../../utils/types/screen.type";
-import { SetAuthToken } from "../../utils/storage/token";
+import { getAuthToken, SetAuthToken } from "../../utils/storage/token";
+import { useGlobalUserContext } from "../../utils/context";
 
 export const useRegisterAction = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ScreensProp>>();
@@ -37,6 +38,7 @@ export const useRegisterAction = () => {
 };
 
 export const useLoginAction = () => {
+  const { setAuthentication } = useGlobalUserContext();
   return useMutation<any, Error, inputProp>({
     mutationFn: async (input: inputProp) => {
       const res = await loginService(input);
@@ -44,13 +46,15 @@ export const useLoginAction = () => {
 
       return res.data;
     },
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       Toast.show({
         type: "success",
         text1: " Login Successful",
         visibilityTime: 3000,
       });
       SetAuthToken(res.data.token);
+      const token = await getAuthToken();
+      setAuthentication(token);
     },
     onError: (error) => {
       console.log(error);
