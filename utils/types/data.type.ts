@@ -15,3 +15,4 @@ export interface DataProp {
   type: string;
   updatedAt: string;
 }
+[];

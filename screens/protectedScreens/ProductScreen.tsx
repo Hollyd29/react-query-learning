@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import { useProductAction } from "../../apis/action/product-action";
 import { useEffect } from "react";
 
@@ -10,6 +10,15 @@ const ProductScreen = () => {
     }
   }, []);
 
-  return <View></View>;
+  return (
+    <View>
+      <FlatList
+        data={data}
+        renderItem={(item) => {
+          return <View></View>;
+        }}
+      />
+    </View>
+  );
 };
 export default ProductScreen;
