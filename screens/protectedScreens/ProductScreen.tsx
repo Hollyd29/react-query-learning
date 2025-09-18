@@ -3,13 +3,16 @@ import {
   useAddToCartAction,
   useProductAction,
 } from "../../apis/action/product-action";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProductScreen = () => {
   const { data, isLoading, error } = useProductAction();
+
+  const [id, setId] = useState<string | number>();
   const res = useAddToCartAction();
 
   const handleAddToCart = (id: string | number) => {
+    setId(id);
     res.mutate(id);
   };
 
@@ -40,7 +43,11 @@ const ProductScreen = () => {
                   }}
                   onPress={() => handleAddToCart(item._id)}
                 >
-                  <Text>{res.isPending ? "Loading..." : "Add to cart"}</Text>
+                  <Text>
+                    {res.isPending && id === item._id
+                      ? "Loading..."
+                      : "Add to cart"}
+                  </Text>
                 </TouchableOpacity>
               </View>
             );
