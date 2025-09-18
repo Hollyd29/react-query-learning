@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { productService } from "../service/product-service";
 import { DataProp } from "../../utils/types/data.type";
 
@@ -10,5 +10,11 @@ export const useProductAction = () => {
       //   console.log(res.data);
       return res.data.products;
     },
+  });
+};
+
+export const useAddToCartAction = () => {
+  return useMutation({
+    mutationFn: async (id) => {},
   });
 };

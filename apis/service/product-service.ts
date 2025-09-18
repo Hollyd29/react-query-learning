@@ -4,6 +4,6 @@ export const productService = async () => {
   return await api.get("/products");
 };
 
-export const addToCartService = async () => {
-  return await api.post("/addToCart");
+export const addToCartService = async (productId: string) => {
+  return await api.post("/addToCart", { productId });
 };
