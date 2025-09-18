@@ -15,8 +15,8 @@ export const useProductAction = () => {
 };
 
 export const useAddToCartAction = () => {
-  return useMutation({
-    mutationFn: async (id: string) => {
+  return useMutation<any, Error, string | number>({
+    mutationFn: async (id: string | number) => {
       const res = await addToCartService(id);
       console.log(res.data);
       return res.data;

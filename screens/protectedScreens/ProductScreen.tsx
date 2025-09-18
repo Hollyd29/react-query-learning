@@ -1,9 +1,13 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import { useProductAction } from "../../apis/action/product-action";
+import {
+  useAddToCartAction,
+  useProductAction,
+} from "../../apis/action/product-action";
 import { useEffect } from "react";
 
 const ProductScreen = () => {
   const { data, isLoading, error } = useProductAction();
+  const res = useAddToCartAction();
 
   const handleAddToCart = (id: string | number) => {};
 
