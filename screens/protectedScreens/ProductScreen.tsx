@@ -9,19 +9,9 @@ const ProductScreen = () => {
   const { data, isLoading, error } = useProductAction();
   const res = useAddToCartAction();
 
-  const handleAddToCart = (id: string | number) => {};
-
-  // useEffect(() => {
-  //   if (data) {
-  //     data;
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("Products data:", data);
-  //   console.log("Loading:", isLoading);
-  //   console.log("Error:", error);
-  // }, [data, isLoading, error]);
+  const handleAddToCart = (id: string | number) => {
+    res.mutate(id);
+  };
 
   return (
     <View style={{ flex: 1, padding: 20, borderWidth: 2, borderColor: "red" }}>
@@ -50,7 +40,7 @@ const ProductScreen = () => {
                   }}
                   onPress={() => handleAddToCart(item._id)}
                 >
-                  <Text>Add to cart</Text>
+                  <Text>{res.isPending ? "Loading..." : "Add to cart"}</Text>
                 </TouchableOpacity>
               </View>
             );

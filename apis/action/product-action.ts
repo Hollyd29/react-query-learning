@@ -15,15 +15,17 @@ export const useProductAction = () => {
 };
 
 export const useAddToCartAction = () => {
+  //   console.log("i'm clicked");
+
   return useMutation<any, Error, string | number>({
     mutationFn: async (id: string | number) => {
       const res = await addToCartService(id);
-      console.log(res.data);
+      //   console.log(res.data);
       return res.data;
     },
     onSuccess: () => {
       Toast.show({
-        type: "error",
+        type: "success",
         text1: "Product add to cart successful",
         visibilityTime: 3000,
       });
