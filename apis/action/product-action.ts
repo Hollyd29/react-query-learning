@@ -1,5 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addToCartService, productService } from "../service/product-service";
+import {
+  addToCartService,
+  allCartService,
+  productService,
+} from "../service/product-service";
 import { DataProp } from "../../utils/types/data.type";
 import Toast from "react-native-toast-message";
 
@@ -32,6 +36,18 @@ export const useAddToCartAction = () => {
     },
     onError: (error) => {
       console.log(error);
+    },
+  });
+};
+
+export const useAllCartAction = () => {
+  return useQuery({
+    queryKey: ["cart"],
+    queryFn: async () => {
+      const res = await allCartService();
+      //   console.log(res.data);
+
+      return res.data;
     },
   });
 };
