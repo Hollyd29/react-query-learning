@@ -41,13 +41,13 @@ export const useAddToCartAction = () => {
 };
 
 export const useAllCartAction = () => {
-  return useQuery({
+  return useQuery<any, Error, DataProp[]>({
     queryKey: ["cart"],
     queryFn: async () => {
       const res = await allCartService();
       //   console.log(res.data);
 
-      return res.data;
+      return res.data.items;
     },
   });
 };
