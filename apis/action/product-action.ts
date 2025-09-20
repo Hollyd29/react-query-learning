@@ -22,6 +22,8 @@ export const useProductAction = () => {
 export const useAddToCartAction = () => {
   //   console.log("i'm clicked");
 
+  const queryClient = useQueryClient();
+
   return useMutation<any, Error, string | number>({
     mutationFn: async (id: string | number) => {
       const res = await addToCartService(id);
@@ -34,6 +36,7 @@ export const useAddToCartAction = () => {
         text1: "Product add to cart successful",
         visibilityTime: 3000,
       });
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
     onError: (error) => {
       console.log(error);

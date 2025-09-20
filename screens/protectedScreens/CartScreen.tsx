@@ -1,6 +1,10 @@
 import { Button, FlatList, Image, Text, View } from "react-native";
-import { useAllCartAction } from "../../apis/action/product-action";
-import { useEffect } from "react";
+import {
+  useAllCartAction,
+  useRemoveAllCart,
+} from "../../apis/action/product-action";
+import { useCallback, useEffect } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 // import { getAuthToken, removeAuthToken } from "../../utils/storage/token";
 // import { useGlobalUserContext } from "../../utils/context";
 
@@ -8,6 +12,7 @@ const CartScreen = () => {
   // const { setAuthentication } = useGlobalUserContext();
 
   const { data, isLoading } = useAllCartAction();
+  const removeAllCart = useRemoveAllCart();
 
   // const logout = () => {
   //   const token: unknown = removeAuthToken();
@@ -18,13 +23,29 @@ const CartScreen = () => {
   //   console.log(data);
   //   // logout();
   // }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      // if (data) {
+      // }
+    }, [data])
+  );
   return (
     <View style={{ flex: 1 }}>
       {isLoading ? (
         <Text>Loading...</Text>
       ) : (
         <View>
-          <Button title="Remove all cart" />
+          {data?.length === 0 ? (
+            <Text>No product in cart</Text>
+          ) : (
+            <Button
+              title={
+                removeAllCart.isPending ? "Removing..." : "Remove all cart"
+              }
+              onPress={() => removeAllCart.mutate()}
+            />
+          )}
           <FlatList
             data={data}
             renderItem={(each) => {
