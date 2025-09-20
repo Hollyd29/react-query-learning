@@ -11,3 +11,7 @@ export const addToCartService = async (productId: string | number) => {
 export const allCartService = async () => {
   return await api.get("/getCartItems");
 };
+
+export const removeAllCartService = async () => {
+  return await api.delete("/deleteAll");
+};
