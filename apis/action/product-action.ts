@@ -1,8 +1,9 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addToCartService,
   allCartService,
   productService,
+  removeAllCartService,
 } from "../service/product-service";
 import { DataProp } from "../../utils/types/data.type";
 import Toast from "react-native-toast-message";
@@ -48,6 +49,19 @@ export const useAllCartAction = () => {
       //   console.log(res.data);
 
       return res.data.items;
+    },
+  });
+};
+
+export const useRemoveAllCart = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async () => removeAllCartService(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+    onError: (error) => {
+      console.log(error);
     },
   });
 };
