@@ -24,12 +24,6 @@ const CartScreen = () => {
   //   // logout();
   // }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      // if (data) {
-      // }
-    }, [data])
-  );
   return (
     <View style={{ flex: 1 }}>
       {isLoading ? (

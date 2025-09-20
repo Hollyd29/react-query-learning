@@ -7,15 +7,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Toast from "react-native-toast-message";
 import { useGlobalUserContext } from "./utils/context";
+import { getAuthToken } from "./utils/storage/token";
 
 const queryClient = new QueryClient();
 
 export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { authentication } = useGlobalUserContext();
+  const { authentication, setAuthentication } = useGlobalUserContext();
 
   useEffect(() => {
-    setIsLoading(false);
+    getAuthToken().then((token) => setAuthentication(token));
+    setTimeout(() => {
+      setIsLoading(false);
+    });
   }, []);
   if (isLoading) {
     return null;
