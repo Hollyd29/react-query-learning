@@ -19,7 +19,7 @@ export default function App() {
     getAuthToken().then((token) => setAuthentication(token));
     setTimeout(() => {
       setIsLoading(false);
-    });
+    }, 3000);
   }, []);
   if (isLoading) {
     return null;
