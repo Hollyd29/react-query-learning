@@ -1,3 +1,4 @@
+import { DataProp } from "../../utils/types/data.type";
 import api from "../api";
 
 export const productService = async () => {
@@ -14,4 +15,11 @@ export const allCartService = async () => {
 
 export const removeAllCartService = async () => {
   return await api.delete("/deleteAll");
+};
+
+export const plusCartService = async (id: DataProp) => {
+  return await api.get(`/increaseItem/${id}`);
+};
+export const minusCartService = async (id: DataProp) => {
+  return await api.get(`/decreaseItem/${id}`);
 };
