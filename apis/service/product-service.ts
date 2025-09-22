@@ -17,9 +17,9 @@ export const removeAllCartService = async () => {
   return await api.delete("/deleteAll");
 };
 
-export const plusCartService = async (id: DataProp) => {
+export const plusCartService = async (id: DataProp[]) => {
   return await api.get(`/increaseItem/${id}`);
 };
-export const minusCartService = async (id: DataProp) => {
+export const minusCartService = async (id: DataProp[]) => {
   return await api.get(`/decreaseItem/${id}`);
 };
