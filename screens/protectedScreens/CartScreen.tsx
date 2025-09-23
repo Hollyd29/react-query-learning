@@ -1,6 +1,7 @@
 import { Button, FlatList, Image, Text, View } from "react-native";
 import {
   useAllCartAction,
+  usePlusCartAction,
   useRemoveAllCart,
 } from "../../apis/action/product-action";
 import { useCallback, useEffect, useState } from "react";
@@ -14,6 +15,8 @@ const CartScreen = () => {
 
   const { data, isLoading } = useAllCartAction();
   const removeAllCart = useRemoveAllCart();
+  const addCart = usePlusCartAction();
+
   const [color, setColor] = useState<string>("");
   const [id, setId] = useState<string | number | null>(null);
 
@@ -26,10 +29,12 @@ const CartScreen = () => {
   //   console.log(data);
   //   // logout();
   // }, []);
-  const colorText = (id: string | number, name: string) => {
+
+  const changeComand = (id: string | number, name: string) => {
     setId(id);
     if (name === "add") {
       setColor("green");
+      addCart.mutate(id);
     } else {
       setColor("red");
     }
@@ -67,14 +72,19 @@ const CartScreen = () => {
                     style={{ display: "flex", flexDirection: "row", gap: 10 }}
                   >
                     <Text
-                      onPress={() => colorText(each.item._id, "add")}
-                      style={{ color: color === "green" ? color : "black" }}
+                      onPress={() => changeComand(each.item._id, "add")}
+                      style={{
+                        color:
+                          color === "green" && id === each.item._id
+                            ? color
+                            : "black",
+                      }}
                     >
                       Add
                     </Text>
                     <Text>{each.item.counter}</Text>
                     <Text
-                      onPress={() => colorText(each.item._id, "minus")}
+                      onPress={() => changeComand(each.item._id, "minus")}
                       style={{ color: color === "red" ? color : "black" }}
                     >
                       Minus
