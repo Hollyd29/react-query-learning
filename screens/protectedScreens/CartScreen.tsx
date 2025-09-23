@@ -4,6 +4,7 @@ import {
   useMinusCartAction,
   usePlusCartAction,
   useRemoveAllCart,
+  useRemoveCart,
 } from "../../apis/action/product-action";
 import { useCallback, useEffect, useState } from "react";
 import { DataProp } from "../../utils/types/data.type";
@@ -17,6 +18,7 @@ const CartScreen = () => {
   const removeAllCart = useRemoveAllCart();
   const plusCart = usePlusCartAction();
   const minusCart = useMinusCartAction();
+  const removeCart = useRemoveCart();
 
   const [color, setColor] = useState<string>("");
   const [id, setId] = useState<string | number | null>(null);
@@ -40,6 +42,10 @@ const CartScreen = () => {
       setColor("red");
       minusCart.mutate(id);
     }
+  };
+
+  const handleRemoveItem = (id: string | number) => {
+    removeCart.mutate(id);
   };
 
   return (
@@ -97,6 +103,12 @@ const CartScreen = () => {
                       Minus
                     </Text>
                   </View>
+                  <Text
+                    style={{ color: "red", marginBottom: 20 }}
+                    onPress={() => handleRemoveItem(each.item._id)}
+                  >
+                    remove Item
+                  </Text>
                 </View>
               );
             }}

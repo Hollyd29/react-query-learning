@@ -6,6 +6,7 @@ import {
   plusCartService,
   productService,
   removeAllCartService,
+  removeCartService,
 } from "../service/product-service";
 import { DataProp } from "../../utils/types/data.type";
 import Toast from "react-native-toast-message";
@@ -100,6 +101,16 @@ export const useMinusCartAction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string | number) => await minusCartService(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+};
+
+export const useRemoveCart = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string | number) => await removeCartService(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },

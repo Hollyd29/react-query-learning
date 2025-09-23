@@ -24,6 +24,6 @@ export const minusCartService = async (id: string | number) => {
   return await api.get(`/decreaseItem/${id}`);
 };
 
-export const removeCartService = async (id: DataProp) => {
+export const removeCartService = async (id: string | number) => {
   return await api.delete(`/deleteCart/${id}`);
 };
