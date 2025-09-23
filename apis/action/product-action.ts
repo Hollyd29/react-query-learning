@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addToCartService,
   allCartService,
+  minusCartService,
   plusCartService,
   productService,
   removeAllCartService,
@@ -89,6 +90,16 @@ export const usePlusCartAction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string | number) => await plusCartService(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+};
+
+export const useMinusCartAction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string | number) => await minusCartService(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
