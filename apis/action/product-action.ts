@@ -70,12 +70,17 @@ export const useRemoveAllCart = () => {
   });
 };
 
-export const usePlusCartAction = () => {
-  return useQuery({
-    queryKey: ["cart"],
-    // queryFn: async (id: string | number) => {
-    //   const res = await plusCartService(id);
-    //   return res.data;
-    // },
-  });
-};
+{
+  // Use this method only when fetching data that you have to pass params
+  // export const usePlusCartAction = (id: string | number) => {
+  //   return useQuery({
+  //     queryKey: ["counter", id],
+  //     queryFn: async ({ queryKey }) => {
+  //       const [_key, cartId] = queryKey;
+  //       const res = await plusCartService(id);
+  //       return res.data;
+  //     },
+  //     enabled: !!id // request to run only when id exist
+  //   });
+  // };
+}
