@@ -1,11 +1,11 @@
 import { Button, FlatList, Image, Text, View } from "react-native";
 import {
   useAllCartAction,
+  useMinusCartAction,
   usePlusCartAction,
   useRemoveAllCart,
 } from "../../apis/action/product-action";
 import { useCallback, useEffect, useState } from "react";
-import { useFocusEffect } from "@react-navigation/native";
 import { DataProp } from "../../utils/types/data.type";
 // import { getAuthToken, removeAuthToken } from "../../utils/storage/token";
 // import { useGlobalUserContext } from "../../utils/context";
@@ -15,7 +15,8 @@ const CartScreen = () => {
 
   const { data, isLoading } = useAllCartAction();
   const removeAllCart = useRemoveAllCart();
-  const addCart = usePlusCartAction();
+  const plusCart = usePlusCartAction();
+  const minusCart = useMinusCartAction();
 
   const [color, setColor] = useState<string>("");
   const [id, setId] = useState<string | number | null>(null);
@@ -34,9 +35,10 @@ const CartScreen = () => {
     setId(id);
     if (name === "add") {
       setColor("green");
-      addCart.mutate(id);
+      plusCart.mutate(id);
     } else {
       setColor("red");
+      minusCart.mutate(id);
     }
   };
 
@@ -85,7 +87,12 @@ const CartScreen = () => {
                     <Text>{each.item.counter}</Text>
                     <Text
                       onPress={() => changeComand(each.item._id, "minus")}
-                      style={{ color: color === "red" ? color : "black" }}
+                      style={{
+                        color:
+                          color === "red" && id === each.item._id
+                            ? color
+                            : "black",
+                      }}
                     >
                       Minus
                     </Text>
