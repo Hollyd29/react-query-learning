@@ -84,3 +84,13 @@ export const useRemoveAllCart = () => {
   //   });
   // };
 }
+
+export const usePlusCartAction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string | number) => await plusCartService(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+};
