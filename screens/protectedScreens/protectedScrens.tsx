@@ -9,6 +9,7 @@ const ProtectedScreen = () => {
     <Tab.Navigator>
       <Tab.Screen name="Product" component={ProductScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
+      {/* <Tab.Screen name="Button" component={}/> */}
     </Tab.Navigator>
   );
 };
