@@ -12,7 +12,7 @@ const ButtonComp = () => {
     setActive(true);
   };
   return (
-    <View>
+    <View style={{ paddingHorizontal: 20, paddingTop: 50 }}>
       <Text>
         This page shows how click ripple is done where you can add your own
         color and how to make a button indecate activeness
