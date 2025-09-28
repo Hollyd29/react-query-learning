@@ -13,6 +13,10 @@ const ButtonComp = () => {
   };
   return (
     <View>
+      <Text>
+        This page shows how click ripple is done where you can add your own
+        color and how to make a button indecate activeness
+      </Text>
       <Pressable
         onPress={() => activate("submit")}
         style={({ pressed }) => [
